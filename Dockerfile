@@ -22,21 +22,11 @@ RUN \
   wget -qO - http://archive.cloudera.com/cdh4/debian/squeeze/amd64/cdh/archive.key | apt-key add - && \
   apt-get update && \
   apt-get install -y flume-ng flume-ng-agent procps && \
-  cp /etc/flume-ng/conf/flume-env.sh.template /etc/flume-ng/conf/flume-env.sh
-  sed -i 's|# export JAVA_HOME=.*|export JAVA_HOME=/usr/lib/jvm/java-6-oracle|g' /etc/flume-ng/conf/flume-env.sh && \
+  cp /etc/flume-ng/conf/flume-env.sh.template /etc/flume-ng/conf/flume-env.sh && \
+  sed -i 's|#JAVA_HOME=.*|JAVA_HOME=/usr/lib/jvm/java-6-oracle|g' /etc/flume-ng/conf/flume-env.sh && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-# Supervisor
-RUN \
-  apt-get -qq update && \
-  apt-get install -y supervisor && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+ENTRYPOINT [ "flume-ng"]
 
-ADD supervisor.conf /etc/supervisor.conf
-
-# Avro
-EXPOSE 9999
-
-CMD ["supervisord", "-c", "/etc/supervisor.conf"]
+CMD ["help"]
