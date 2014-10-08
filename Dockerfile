@@ -29,4 +29,4 @@ RUN \
 
 ENTRYPOINT [ "flume-ng"]
 
-CMD ["help"]
+CMD [ "help" ]
