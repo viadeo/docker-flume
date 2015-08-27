@@ -1,4 +1,4 @@
-FROM debian:squeeze:latest
+FROM debian:squeeze
 
 # Install basics
 RUN \
