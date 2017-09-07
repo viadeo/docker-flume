@@ -17,7 +17,7 @@ database:
 
 test:
   override:
-    - run_tests.sh
+    - ./run_tests.sh
     - aws cloudformation validate-template --template-body file://.ecs/template.yml
 
 deployment:
