@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  AppName:
+    Description: App Name
+    Type: String
+    ConstraintDescription: App Name
+    Default: appname
+  TaskName:
+    Description: Task familly  name
+    Type: String
+  DockerImageName:
+    Description: Docker image name on Quay repository
+    Type: String
+  TaskMemory:
+    Description: Allocated memory for task
+    Type: Number
+    Default: '512'
+  LogGroupName:
+    Type: String
+    Default: awslogs-docker
+  LogRegion:
+    Type: String
+    Default: us-west-1
+Resources:
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+      - Name: !Ref AppName
+        Image: !Ref DockerImageName
+        PortMappings:
+        - ContainerPort: 9999
+          HostPort: 9999
+          Protocol: tcp
+        - ContainerPort: 9997
+          HostPort: 9997
+          Protocol: tcp
+        LogConfiguration:
+          LogDriver: awslogs
+          Options:
+            awslogs-group: !Ref LogGroupName
+            awslogs-region: !Ref LogRegion
+            awslogs-stream-prefix: !Ref AppName
+        Memory: !Ref TaskMemory
+        Essential: true
+      Family: !Ref TaskName

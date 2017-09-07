@@ -1,0 +1,27 @@
+machine:
+  timezone:
+    Europe/Paris
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - sudo pip install awscli
+  override:
+    - docker info
+    - docker build -t viadeo/docker_bootstrap:$CIRCLE_SHA1 .
+
+database:
+  override:
+    - echo "no database setup"
+
+test:
+  override:
+    - run_tests.sh
+    - aws cloudformation validate-template --template-body file://.ecs/template.yml
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - .ecs/deploy.sh $CIRCLE_SHA1

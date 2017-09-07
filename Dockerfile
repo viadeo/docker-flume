@@ -1,7 +1,8 @@
-FROM debian:jessie
+FROM debian:jessie-slim
 
 # Install basics
 RUN \
+  mkdir -p /usr/share/man/man1 && \
   apt-get -qq update && \
   apt-get -y install wget python-software-properties openjdk-7-jre-headless && \
   apt-get clean && \
