@@ -3,15 +3,13 @@ machine:
     Europe/Paris
   services:
     - docker
-  environment:
-    - DOCKER_IMAGE: viadeo/docker_flume
 
 dependencies:
   pre:
     - sudo pip install awscli
   override:
     - docker info
-    - docker build -t $DOCKER_IMAGE:$CIRCLE_SHA1 .
+    - docker build -t viadeo/docker_flume:$CIRCLE_SHA1 .
 
 database:
   override:
@@ -19,7 +17,7 @@ database:
 
 test:
   override:
-    - export DOCKER_IMAGE ; ./run_tests.sh
+    - ./run_tests.sh
     - aws cloudformation validate-template --template-body file://.ecs/template.yml
 
 deployment:
