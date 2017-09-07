@@ -1,10 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
-  AppName:
-    Description: App Name
-    Type: String
-    ConstraintDescription: App Name
-    Default: appname
   TaskName:
     Description: Task familly  name
     Type: String

@@ -87,10 +87,8 @@ aws cloudformation $CF_CMD \
   --stack-name $STACK_NAME \
   --template-body "$(<template.yml)"  \
   --parameters \
-    ParameterKey=TaskName,ParameterValue=$TASK_DEFINITION_ARN \
-    ParameterKey=AppName,ParameterValue=$CONTAINER_NAME \
     ParameterKey=TaskName,ParameterValue=$TASK_NAME \
-    ParameterKey=DockerImageName,ParameterValue=$DOCKER_IMAGE_NAME_ECR \
+    ParameterKey=DockerImageName,ParameterValue=$DOCKER_IMAGE_NAME_ECR
 aws cloudformation wait $CF_FINAL_STATUS --stack-name $STACK_NAME
 
 popd
