@@ -21,7 +21,7 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       ContainerDefinitions:
-      - Name: !Ref AppName
+      - Name: !Ref TaskName
         Image: !Ref DockerImageName
         PortMappings:
         - ContainerPort: 9999
