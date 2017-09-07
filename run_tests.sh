@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start Flume container
-docker run --rm --name=flume -v test/conf:/tmp/conf -v test/tmp:/tmp/flume-io ${DOCKER_IMAGE} agent -n agent -c /etc/flume-ng/conf -f /tmp/conf/flume.properties &
+docker run --rm --name=flume -v test/conf:/tmp/conf -v test/tmp:/tmp/flume-io ${DOCKER_IMAGE}:${CIRCLE_SHA1} agent -n agent -c /etc/flume-ng/conf -f /tmp/conf/flume.properties &
 
 # Add new logs in input file
 echo "test1" >> test/tmp/flume-input.log
