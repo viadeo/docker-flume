@@ -30,6 +30,9 @@ Resources:
         - ContainerPort: 9997
           HostPort: 9997
           Protocol: tcp
+        - ContainerPort: 41414
+          HostPort: 41414
+          Protocol: tcp
         LogConfiguration:
           LogDriver: awslogs
           Options:
@@ -38,4 +41,5 @@ Resources:
             awslogs-stream-prefix: !Ref TaskName
         Memory: !Ref TaskMemory
         Essential: true
+        Command: ["agent", "-n", "agent", "-c", "/etc/flume-ng/conf", "-f", "/etc/flume-ng/conf/flume.conf"]
       Family: !Ref TaskName

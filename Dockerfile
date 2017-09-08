@@ -17,10 +17,12 @@ RUN \
   cp /etc/flume-ng/conf/flume-env.sh.template /etc/flume-ng/conf/flume-env.sh && \
   sed -i 's|#JAVA_HOME=.*|JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/|g' /etc/flume-ng/conf/flume-env.sh && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir -p /data/flume && chown -R flume /data/flume  
 
 EXPOSE 9009 9997 9999 41414 
 COPY conf/ /etc/flume-ng/conf/
 USER flume
 
-ENTRYPOINT [ "flume-ng", "agent", "-n", "agent", "-c", "/etc/flume-ng/conf", "-f", "/etc/flume-ng/conf/flume.conf"]
+ENTRYPOINT [ "flume-ng" ]
+CMD [ "--help" ]
