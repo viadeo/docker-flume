@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod a+w test/tmp/flume-output
 
 # start Flume container
 docker run --rm --name=flume -v $(pwd)/test/conf:/tmp/conf -v $(pwd)/test/tmp:/tmp/flume-io viadeo/docker_flume:${CIRCLE_SHA1} agent -n agent -c /etc/flume-ng/conf -f /tmp/conf/flume.properties &
