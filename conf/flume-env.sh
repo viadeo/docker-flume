@@ -1,0 +1,7 @@
+JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
+JAVA_OPTS="$JAVA_OPTS -Xms100m -Xmx100m"
+JAVA_OPTS="$JAVA_OPTS -Dflume.monitoring.type=HTTP"
+JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote"
+JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.port=9009"
+JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.authenticate=false"
+JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.ssl=false"

@@ -19,6 +19,8 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT [ "flume-ng"]
+EXPOSE 9009 9997 9999 41414 
+COPY conf/ /etc/flume-ng/conf/
+USER flume
 
-CMD [ "help" ]
+ENTRYPOINT [ "flume-ng", "agent", "-n", "agent", "-c", "/etc/flume-ng/conf", "-f", "/etc/flume-ng/conf/flume.conf"]
