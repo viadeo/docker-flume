@@ -31,6 +31,8 @@ Resources:
     Properties:
       Cluster: !Ref Cluster
       DesiredCount: !Ref NodeCount
+      DeploymentConfiguration:
+        MaximumPercent: 0
       PlacementConstraints: 
       - Type: distinctInstance
       ServiceName: !Ref TaskName
