@@ -32,7 +32,7 @@ Resources:
       Cluster: !Ref Cluster
       DesiredCount: !Ref NodeCount
       PlacementConstraints: 
-        Type: distinctInstance
+      - Type: distinctInstance
       ServiceName: !Ref TaskName
       TaskDefinition: !Ref TaskDefinition
       
