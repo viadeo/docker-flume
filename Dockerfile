@@ -18,7 +18,7 @@ RUN \
   sed -i 's|#JAVA_HOME=.*|JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/|g' /etc/flume-ng/conf/flume-env.sh && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
-  mkdir -p /data/flume && chown -R flume /data/flume  
+  mkdir -p /data/flumeng && chown -R flume /data/flumeng  
 
 EXPOSE 9009 9997 9999 41414 
 COPY conf/ /etc/flume-ng/conf/
