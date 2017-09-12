@@ -42,5 +42,4 @@ Resources:
             awslogs-stream-prefix: !Ref TaskName
         Memory: !Ref TaskMemory
         Essential: true
-        Command: ["agent", "-n", "agent", "-c", "/etc/flume-ng/conf", "-f", "/etc/flume-ng/conf/flume.conf"]
       Family: !Ref TaskName

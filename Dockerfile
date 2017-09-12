@@ -25,4 +25,4 @@ COPY conf/ /etc/flume-ng/conf/
 USER flume
 
 ENTRYPOINT [ "flume-ng" ]
-CMD [ "--help" ]
+CMD ["agent", "-n", "agent", "-c", "/etc/flume-ng/conf", "-f", "/etc/flume-ng/conf/flume.conf"]
