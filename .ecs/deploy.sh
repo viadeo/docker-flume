@@ -47,6 +47,7 @@ S3_BUCKET="arn:aws:s3:::viadeo-infra/docker/BO/$S3_FOLDER/*"
 # Deploy image to Docker Hub
 eval $(aws ecr get-login --region 'us-west-1')
 aws ecr create-repository --repository-name "viadeo/docker_${CONTAINER_NAME}" || true
+docker tag $DOCKER_IMAGE_NAME $DOCKER_IMAGE_NAME_ECR
 docker push $DOCKER_IMAGE_NAME_ECR
 
 # Ensure cloudwatch loggroup exists
