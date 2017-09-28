@@ -6,9 +6,6 @@
 #                 			      #
 ###############################################
 
-# Image version
-SHA1=$1
-
 # Container name
 CONTAINER_NAME="flume"
 
@@ -22,7 +19,7 @@ CLUSTER_STACK_NAME="components-services-prod-ecs-backoffices-cluster"
 TASK_NAME="task-${CONTAINER_NAME}"
 
 # Local Docker image name
-DOCKER_IMAGE_NAME="viadeo/docker_${CONTAINER_NAME}:$SHA1"
+DOCKER_IMAGE_NAME="viadeo/docker_${CONTAINER_NAME}"
 
 # Docker image name on ECR
 DOCKER_IMAGE_NAME_ECR="062010136920.dkr.ecr.us-west-1.amazonaws.com/${DOCKER_IMAGE_NAME}"
@@ -50,7 +47,6 @@ S3_BUCKET="arn:aws:s3:::viadeo-infra/docker/BO/$S3_FOLDER/*"
 # Deploy image to Docker Hub
 eval $(aws ecr get-login --region 'us-west-1')
 aws ecr create-repository --repository-name "viadeo/docker_${CONTAINER_NAME}" || true
-docker tag $DOCKER_IMAGE_NAME $DOCKER_IMAGE_NAME_ECR
 docker push $DOCKER_IMAGE_NAME_ECR
 
 # Ensure cloudwatch loggroup exists

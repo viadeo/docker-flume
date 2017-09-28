@@ -9,7 +9,7 @@ dependencies:
     - sudo pip install awscli
   override:
     - docker info
-    - docker build -t viadeo/docker_flume:$CIRCLE_SHA1 .
+    - docker build -t viadeo/docker_flume .
 
 database:
   override:
@@ -24,4 +24,4 @@ deployment:
   hub:
     branch: master
     commands:
-      - .ecs/deploy.sh $CIRCLE_SHA1
+      - .ecs/deploy.sh
