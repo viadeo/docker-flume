@@ -1,0 +1,31 @@
+version: 2
+
+aliases:
+
+  - &use_awscli
+    docker:
+      - image: 062010136920.dkr.ecr.us-west-1.amazonaws.com/viadeo/docker-awscli:latest
+
+jobs:
+
+  deployment:
+    <<: *use_awscli
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Dependencies
+          command: |
+            docker info
+            docker build -t viadeo/docker_flume .
+          
+workflows:
+
+  version: 2
+
+  deployment:
+    jobs:
+      - deployment:
+          filters:
+            branches:
+              only: master
