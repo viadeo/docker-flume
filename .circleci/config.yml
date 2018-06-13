@@ -18,7 +18,12 @@ jobs:
           command: |
             docker info
             docker build -t viadeo/docker_flume .
-          
+      - run:
+          name: Test
+          command: |
+            ./run_tests.sh
+            aws cloudformation validate-template --template-body file://.ecs/template.yml
+
 workflows:
 
   version: 2
